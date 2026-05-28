@@ -16,7 +16,6 @@ from __future__ import annotations
 import os
 import time
 from dataclasses import asdict, dataclass
-from typing import Iterable
 
 from flask import Flask, jsonify, request
 
