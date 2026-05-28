@@ -1,0 +1,23 @@
+{
+  "http_requests_total": {
+    "/properties:GET:200": 8432,
+    "/properties:GET:404": 6,
+    "/property:GET:200":   4119,
+    "/leads:POST:201":     214,
+    "/leads:POST:422":     11,
+    "/health:GET:200":     38540,
+    "/metrics:GET:200":    9020
+  },
+  "http_request_duration_seconds": {
+    "buckets": {
+      "0.05": 6244, "0.1": 9120, "0.25": 11402, "0.5": 11984, "1.0": 12203, "+Inf": 12483
+    },
+    "count": 12483,
+    "sum":   1147.62
+  },
+  "process": {
+    "cpu_seconds_total": 423.71,
+    "resident_memory_bytes": 72142848,
+    "open_fds": 47
+  }
+}

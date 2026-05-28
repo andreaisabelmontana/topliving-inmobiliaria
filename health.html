@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estado del sistema — Top Living</title>
+<meta name="theme-color" content="#C8102E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container nav">
+        <a class="logo" href="index.html"><span class="logo-mark"></span> Top&nbsp;Living</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="properties.html">Propiedades</a></li>
+            <li><a href="about.html">Nosotros</a></li>
+            <li><a href="devops.html">Tecnología</a></li>
+            <li><a href="health.html" class="active">Estado</a></li>
+        </ul>
+        <div class="nav-cta">
+            <span class="status-pill"><span class="dot"></span> Todo operativo</span>
+        </div>
+    </div>
+</header>
+
+<section style="padding:48px 0 8px">
+    <div class="container">
+        <span class="eyebrow" style="color:var(--accent);font-size:0.78rem;text-transform:uppercase;letter-spacing:.14em;font-weight:600">Observabilidad</span>
+        <h1>Estado del sistema</h1>
+        <p class="muted" style="max-width:60ch">
+            Dashboard en vivo del API de Top Living. Datos simulados en el cliente
+            que reproducen exactamente lo que sirve <code class="inline">/metrics</code>
+            en producción (formato Prometheus).
+        </p>
+    </div>
+</section>
+
+<section style="padding:24px 0 12px">
+    <div class="container">
+        <div class="metrics-grid">
+            <div class="metric">
+                <div class="label">Estado</div>
+                <div class="value" style="font-size:1.4rem">
+                    <span class="status-pill"><span class="dot"></span> healthy</span>
+                </div>
+                <div class="delta">Última verificación: ahora</div>
+            </div>
+            <div class="metric">
+                <div class="label">Uptime</div>
+                <div class="value" id="m-uptime">—</div>
+                <div class="delta">desde el último deploy</div>
+            </div>
+            <div class="metric">
+                <div class="label">Versión</div>
+                <div class="value" style="font-size:1.4rem">v1.4.2</div>
+                <div class="delta">commit a7f12c · main</div>
+            </div>
+            <div class="metric">
+                <div class="label">Región</div>
+                <div class="value" style="font-size:1.4rem">bog-1</div>
+                <div class="delta">Bogotá · Fly.io</div>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric">
+                <div class="label">Requests totales</div>
+                <div class="value" id="m-requests">—</div>
+                <div class="delta">desde el inicio del proceso</div>
+            </div>
+            <div class="metric">
+                <div class="label">Requests / ciclo</div>
+                <div class="value" id="m-rps">—</div>
+                <div class="delta">muestra de 2s</div>
+            </div>
+            <div class="metric">
+                <div class="label">Latencia p50</div>
+                <div class="value" id="m-latency">—</div>
+                <div class="delta">objetivo &lt; 250ms</div>
+            </div>
+            <div class="metric">
+                <div class="label">5xx</div>
+                <div class="value" id="m-errors">—</div>
+                <div class="delta" id="m-errorRate">—</div>
+            </div>
+        </div>
+
+        <div class="metric" style="margin-top:8px">
+            <div class="label">Latencia (últimos 60s)</div>
+            <canvas id="spark" style="width:100%;height:80px;display:block;margin-top:8px"></canvas>
+        </div>
+    </div>
+</section>
+
+<section style="padding:32px 0 16px">
+    <div class="container">
+        <h2 style="font-family:var(--font-sans);font-size:1.2rem">Dependencias</h2>
+        <table class="simple">
+            <thead><tr><th>Servicio</th><th>Estado</th><th>Latencia</th><th>Último check</th></tr></thead>
+            <tbody>
+                <tr><td>PostgreSQL (catálogo)</td><td><span class="status-pill"><span class="dot"></span>up</span></td><td>4 ms</td><td>hace 3s</td></tr>
+                <tr><td>Redis (cache de listados)</td><td><span class="status-pill"><span class="dot"></span>up</span></td><td>1 ms</td><td>hace 3s</td></tr>
+                <tr><td>S3 (imágenes)</td><td><span class="status-pill"><span class="dot"></span>up</span></td><td>62 ms</td><td>hace 5s</td></tr>
+                <tr><td>SMTP (notificaciones)</td><td><span class="status-pill"><span class="dot"></span>up</span></td><td>180 ms</td><td>hace 10s</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section style="padding:24px 0 80px">
+    <div class="container">
+        <h2 style="font-family:var(--font-sans);font-size:1.2rem">Endpoints</h2>
+        <p class="muted">Mismos endpoints que escanea Prometheus.</p>
+<pre><code>GET /health
+{
+  "status": "healthy",
+  "version": "1.4.2",
+  "uptime_s": 134823,
+  "deps": { "db": "up", "cache": "up", "s3": "up", "smtp": "up" }
+}
+
+GET /metrics      # formato Prometheus
+# HELP http_requests_total Total de requests
+# TYPE http_requests_total counter
+http_requests_total{route="/properties",method="GET",status="200"} 8432
+http_requests_total{route="/leads",method="POST",status="201"}      214
+http_request_duration_seconds_bucket{le="0.1"}                      9120
+http_request_duration_seconds_bucket{le="0.25"}                    11402</code></pre>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="logo" style="color:#fff;margin-bottom:14px"><span class="logo-mark"></span> Top&nbsp;Living</div>
+                <p style="color:rgba(255,255,255,.6);max-width:32ch">Inmobiliaria moderna · ingeniería seria.</p>
+            </div>
+            <div><h4>Compañía</h4><ul><li><a href="about.html">Nosotros</a></li><li><a href="properties.html">Propiedades</a></li></ul></div>
+            <div><h4>Servicios</h4><ul><li><a href="properties.html?op=sale">Comprar</a></li><li><a href="properties.html?op=rent">Arrendar</a></li></ul></div>
+            <div><h4>Plataforma</h4><ul><li><a href="devops.html">Tecnología</a></li><li><a href="health.html">Estado</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Top Living Inmobiliaria S.A.S.</span>
+            <span>SDDO · IE University · BCSAI 2025</span>
+        </div>
+    </div>
+</footer>
+
+<script src="js/health.js"></script>
+</body>
+</html>

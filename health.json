@@ -1,0 +1,15 @@
+{
+  "status": "healthy",
+  "version": "1.4.2",
+  "commit": "a7f12c",
+  "branch": "main",
+  "region": "bog-1",
+  "uptime_s": 134823,
+  "started_at": "2026-05-26T18:42:11Z",
+  "deps": {
+    "db":    { "status": "up", "latency_ms": 4 },
+    "cache": { "status": "up", "latency_ms": 1 },
+    "s3":    { "status": "up", "latency_ms": 62 },
+    "smtp":  { "status": "up", "latency_ms": 180 }
+  }
+}
