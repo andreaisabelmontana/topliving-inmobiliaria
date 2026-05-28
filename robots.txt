@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://topliving.example.com/sitemap.xml
