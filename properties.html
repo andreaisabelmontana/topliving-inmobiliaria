@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Propiedades — Top Living Inmobiliaria</title>
+<meta name="theme-color" content="#C8102E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container nav">
+        <a class="logo" href="index.html">
+            <span class="logo-mark"></span>
+            Top&nbsp;Living
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="properties.html">Propiedades</a></li>
+            <li><a href="about.html">Nosotros</a></li>
+            <li><a href="devops.html">Tecnología</a></li>
+            <li><a href="health.html">Estado</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="index.html" class="btn btn-dark btn-sm">Inicio</a>
+        </div>
+    </div>
+</header>
+
+<section style="padding:48px 0 12px">
+    <div class="container">
+        <span class="eyebrow" style="color:var(--accent);font-size:0.78rem;text-transform:uppercase;letter-spacing:.14em;font-weight:600">Catálogo</span>
+        <h1>Propiedades disponibles</h1>
+        <p class="muted" style="max-width:60ch">
+            Inventario verificado de Top Living. Filtra por operación, tipo y ciudad, o busca por barrio.
+        </p>
+
+        <div class="filters">
+            <select id="fltOp">
+                <option value="">Todas las operaciones</option>
+                <option value="sale">Venta</option>
+                <option value="rent">Arriendo</option>
+            </select>
+            <select id="fltType">
+                <option value="">Todos los tipos</option>
+                <option value="apartment">Apartamento</option>
+                <option value="house">Casa</option>
+                <option value="studio">Apartaestudio</option>
+                <option value="office">Oficina</option>
+                <option value="lot">Lote</option>
+            </select>
+            <select id="fltCity">
+                <option value="">Todas las ciudades</option>
+            </select>
+            <select id="fltSort">
+                <option value="">Ordenar por</option>
+                <option value="price_asc">Precio: menor a mayor</option>
+                <option value="price_desc">Precio: mayor a menor</option>
+                <option value="area_desc">Mayor área</option>
+            </select>
+            <input id="fltSearch" type="text" placeholder="Buscar barrio o título…">
+            <span class="count" id="listingCount"></span>
+        </div>
+    </div>
+</section>
+
+<section style="padding:0 0 80px">
+    <div class="container">
+        <div class="property-grid" id="listingGrid"></div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="logo" style="color:#fff;margin-bottom:14px">
+                    <span class="logo-mark"></span> Top&nbsp;Living
+                </div>
+                <p style="color:rgba(255,255,255,.6);max-width:32ch">
+                    Inmobiliaria moderna. Tecnología, transparencia y trato cercano para encontrar tu próximo hogar.
+                </p>
+            </div>
+            <div>
+                <h4>Compañía</h4>
+                <ul>
+                    <li><a href="about.html">Nosotros</a></li>
+                    <li><a href="properties.html">Propiedades</a></li>
+                    <li><a href="#">Asesores</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="properties.html?op=sale">Comprar</a></li>
+                    <li><a href="properties.html?op=rent">Arrendar</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Plataforma</h4>
+                <ul>
+                    <li><a href="devops.html">Tecnología</a></li>
+                    <li><a href="health.html">Estado del sistema</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Top Living Inmobiliaria S.A.S.</span>
+            <span>Bogotá · Medellín · Cartagena · Cali · Bucaramanga</span>
+        </div>
+    </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+// Allow deep-linking from homepage hero
+(function preset() {
+    const p = new URLSearchParams(location.search);
+    const op = p.get("op"), type = p.get("type"), q = p.get("q");
+    document.addEventListener("DOMContentLoaded", () => {
+        if (op)   document.getElementById("fltOp").value     = op;
+        if (type) document.getElementById("fltType").value   = type;
+        if (q)    document.getElementById("fltSearch").value = q;
+        document.getElementById("fltSearch").dispatchEvent(new Event("input"));
+    });
+})();
+</script>
+</body>
+</html>

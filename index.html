@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Top Living Inmobiliaria — Encuentra tu próximo hogar</title>
+<meta name="description" content="Apartamentos, casas, oficinas y lotes en Colombia. Top Living Inmobiliaria — propiedades curadas y asesoría experta.">
+<meta property="og:title" content="Top Living Inmobiliaria">
+<meta property="og:description" content="Encuentra tu próximo hogar en Colombia.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#C8102E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container nav">
+        <a class="logo" href="index.html">
+            <span class="logo-mark"></span>
+            Top&nbsp;Living
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="properties.html">Propiedades</a></li>
+            <li><a href="about.html">Nosotros</a></li>
+            <li><a href="devops.html">Tecnología</a></li>
+            <li><a href="health.html">Estado</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="properties.html" class="btn btn-dark btn-sm">Explorar</a>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <span class="tag" style="background:var(--surface);color:var(--accent);font-weight:600">Inmobiliaria · Colombia</span>
+            <h1>Tu próximo hogar <span class="accent">empieza aquí</span>.</h1>
+            <p class="lead">
+                Apartamentos, casas y oficinas curadas en Bogotá, Medellín, Cartagena y más.
+                Acompañamiento personalizado, datos transparentes y procesos 100% digitales.
+            </p>
+            <div class="hero-cta">
+                <a href="properties.html" class="btn btn-primary">Ver propiedades</a>
+                <a href="about.html" class="btn btn-ghost">Cómo funciona</a>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Ciudad o barrio (ej. Chicó)" id="heroQ">
+                <select id="heroOp">
+                    <option value="">Comprar o arrendar</option>
+                    <option value="sale">Comprar</option>
+                    <option value="rent">Arrendar</option>
+                </select>
+                <select id="heroType">
+                    <option value="">Tipo de inmueble</option>
+                    <option value="apartment">Apartamento</option>
+                    <option value="house">Casa</option>
+                    <option value="studio">Apartaestudio</option>
+                    <option value="office">Oficina</option>
+                    <option value="lot">Lote</option>
+                </select>
+                <button class="btn btn-primary" onclick="heroSearch()">Buscar</button>
+            </div>
+        </div>
+        <div class="hero-image"
+             style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80')">
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED -->
+<section class="tight">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Selección de la semana</span>
+                <h2>Propiedades destacadas</h2>
+                <p>Inmuebles verificados por nuestro equipo. Datos actualizados cada 24h.</p>
+            </div>
+            <a href="properties.html" class="btn btn-ghost btn-sm">Ver todas →</a>
+        </div>
+        <div class="property-grid" id="featuredGrid"></div>
+    </div>
+</section>
+
+<!-- WHY TOP LIVING -->
+<section style="background:var(--surface)">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Por qué Top Living</span>
+                <h2>Decisiones más simples,<br>resultados más claros.</h2>
+            </div>
+        </div>
+        <div class="devops-grid">
+            <div class="concept">
+                <div class="icon">01</div>
+                <h3>Inventario verificado</h3>
+                <p>Cada propiedad pasa por revisión legal, técnica y comercial antes de publicarse.</p>
+            </div>
+            <div class="concept">
+                <div class="icon">02</div>
+                <h3>Asesor dedicado</h3>
+                <p>Un único punto de contacto desde la búsqueda hasta la entrega de llaves.</p>
+            </div>
+            <div class="concept">
+                <div class="icon">03</div>
+                <h3>Datos transparentes</h3>
+                <p>Precio por m², valorización del sector e historial de la propiedad — sin sorpresas.</p>
+            </div>
+            <div class="concept">
+                <div class="icon">04</div>
+                <h3>Procesos 100% digitales</h3>
+                <p>Firma electrónica, contratos en línea y pagos seguros. Nunca pierdes una visita.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- METRICS BANNER -->
+<section class="tight">
+    <div class="container">
+        <div class="metrics-grid">
+            <div class="metric">
+                <div class="label">Inmuebles activos</div>
+                <div class="value">1,247</div>
+                <div class="delta up">+8.2% este mes</div>
+            </div>
+            <div class="metric">
+                <div class="label">Ciudades</div>
+                <div class="value">12</div>
+                <div class="delta">Cobertura nacional</div>
+            </div>
+            <div class="metric">
+                <div class="label">Asesores certificados</div>
+                <div class="value">38</div>
+                <div class="delta up">+4 este trimestre</div>
+            </div>
+            <div class="metric">
+                <div class="label">Satisfacción NPS</div>
+                <div class="value">72</div>
+                <div class="delta up">Top decil del sector</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DEVOPS LINK -->
+<section class="strip">
+    <div class="container" style="display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center">
+        <div>
+            <span class="eyebrow" style="color:rgba(255,255,255,.6)">Detrás del sitio</span>
+            <h2>Construido con prácticas DevOps modernas.</h2>
+            <p>
+                Este sitio es también el proyecto académico de SDDO — IE University.
+                Cada principio del curso (SDLC, Git, arquitectura, testing, CI/CD, contenedores,
+                monitorización y seguridad) está aplicado y documentado.
+            </p>
+        </div>
+        <div style="text-align:right">
+            <a href="devops.html" class="btn btn-primary">Ver el showcase técnico</a>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="logo" style="color:#fff;margin-bottom:14px">
+                    <span class="logo-mark"></span>
+                    Top&nbsp;Living
+                </div>
+                <p style="color:rgba(255,255,255,.6);max-width:32ch">
+                    Inmobiliaria moderna. Tecnología, transparencia y trato cercano para encontrar tu próximo hogar.
+                </p>
+            </div>
+            <div>
+                <h4>Compañía</h4>
+                <ul>
+                    <li><a href="about.html">Nosotros</a></li>
+                    <li><a href="properties.html">Propiedades</a></li>
+                    <li><a href="#">Asesores</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="properties.html?op=sale">Comprar</a></li>
+                    <li><a href="properties.html?op=rent">Arrendar</a></li>
+                    <li><a href="#">Vender con nosotros</a></li>
+                    <li><a href="#">Avalúos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Plataforma</h4>
+                <ul>
+                    <li><a href="devops.html">Tecnología</a></li>
+                    <li><a href="health.html">Estado del sistema</a></li>
+                    <li><a href="health.json">/health (API)</a></li>
+                    <li><a href="metrics.json">/metrics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Top Living Inmobiliaria S.A.S. — NIT 900.xxx.xxx-x</span>
+            <span>Bogotá · Medellín · Cartagena · Cali · Bucaramanga</span>
+        </div>
+    </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+function heroSearch() {
+    const q  = document.getElementById("heroQ").value.trim();
+    const op = document.getElementById("heroOp").value;
+    const t  = document.getElementById("heroType").value;
+    const params = new URLSearchParams();
+    if (q)  params.set("q", q);
+    if (op) params.set("op", op);
+    if (t)  params.set("type", t);
+    location.href = "properties.html" + (params.toString() ? "?" + params : "");
+}
+</script>
+</body>
+</html>
